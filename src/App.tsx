@@ -1,19 +1,10 @@
 import Editor from "./AceEditor";
-import React, { Component, useCallback, useState } from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {
-    // constructor(props: any) {
-    //     super(props)
 
-    //     this.state = {
-    //         code: ''
-    //     }
-
-    //     this.compile = this.compile.bind(this);
-    //     this.saveChanges = this.saveChanges.bind(this);
-    // }
     const [state, setState] = useState('');
 
     const compile = () => {
@@ -21,16 +12,9 @@ const App = () => {
         console.log("Code: ", code);
     }
 
-    const onSaveChanges = useCallback((value: string, event: any) => {
-        console.log("onSaveChanges: ", value);
-        setState(value);
-    }, []);
-
     return(
             <div className = "App" >
-                <Editor
-                    saveFunction={onSaveChanges}
-                />
+                <Editor value={state} onChange={setState} />
                 <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
                     <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Online Judge</a>
                     <ul className="navbar-nav px-3">

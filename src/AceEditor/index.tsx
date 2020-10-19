@@ -1,41 +1,26 @@
-import React, { FC, useCallback, Component } from "react";
+import React, { FC } from "react";
 import AceEditor from "react-ace-builds";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "ace-builds/src-noconflict/mode-c_cpp";
 import "ace-builds/src-noconflict/theme-monokai";
 
 interface EditorProps {
-    saveFunction: any
+    value: string;
+    onChange: (val: string) => void;
 }
 
-type SaveFunction = (value: string, event: any) => void;
+const Editor:FC<EditorProps> = props => {
 
-
-const Editor = (saveFunction: any) => {
-    // constructor(props : any) {
-    //     super(props)
-
-    //     this.state = {
-    //         callback_function: this.props.saveFunction,
-    //     }
-
-    //     this.saveCode = this.saveCode.bind(this);
-    // }
-
-    const saveCode = useCallback((value: string, event: any) => {
-        saveFunction(value, event);
-    }, []);
-
-    const empty = (value: string) => {}
+    const { value, onChange } = props;
 
     return (
         <AceEditor
             mode="c_cpp"
             theme="monokai"
             enableBasicAutocompletion={true}
-            onChange={empty}
+            onChange={onChange}
+            value={value}
             name="ace-editor-element"
-            ref="aceEditor"
             style={{
                 position: "absolute",
                 top: "165px",
