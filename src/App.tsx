@@ -1,4 +1,4 @@
-import Editor from "./AceEditor";
+import Editor from "./MonacaEditor";
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
